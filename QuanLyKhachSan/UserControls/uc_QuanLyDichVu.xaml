@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="GUI.UserControls.uc_QuanLyDichVu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.UserControls"
+             mc:Ignorable="d" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"             
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"     
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"     
+             TextElement.FontWeight="Regular"     
+             TextElement.FontSize="13"     
+             TextOptions.TextFormattingMode="Ideal"     
+             TextOptions.TextRenderingMode="Auto"    
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="641" d:DesignWidth="1300">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--Các button-->
+        <Grid Grid.Row="0">
+
+            <Button Name="btnThem" Click="btnThem_Click" Width="150" Height="36" Content="Thêm dịch vụ" FontSize="15" 
+                    FontFamily="Roboto" FontWeight="Bold" Background="#FF478C10"
+                    Margin="0,0,100,0" HorizontalAlignment="Right"  VerticalAlignment="Center">
+                <Button.Clip>
+                    <RectangleGeometry Rect="0,0,150,36" RadiusX="10" RadiusY="10" />
+                </Button.Clip>
+            </Button>
+
+            <!--ô tìm kiếm-->
+            <materialDesign:ColorZone Mode="Standard" CornerRadius="5" HorizontalAlignment="Left" Margin="85,0,0,0"
+                                          VerticalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth1" Width="250">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Style="{DynamicResource MaterialDesignToolButton}">
+                        <materialDesign:PackIcon Kind="Search" Opacity=".56" />
+                    </Button>
+                    <TextBox Grid.Column="1" x:Name="txtFilter" TextChanged="txtFilter_TextChanged"
+                                Margin="0 0 10 0"
+                                materialDesign:HintAssist.Hint="Nhập tên dịch vụ cần tìm"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                BorderThickness="0"
+                                MinWidth="200"
+                                FlowDirection="LeftToRight"
+                                VerticalAlignment="Center" />
+
+                </Grid>
+            </materialDesign:ColorZone>
+        </Grid>
+
+        <!--Listview hiển thị-->
+        <Grid Grid.Row="1" Margin="0 20 0 0">
+            <Grid Width="680" Height="500" Background="#F2F1F1">
+                <Grid.Clip>
+                    <RectangleGeometry Rect="0,0,680,500" RadiusX="10" RadiusY="10" >
+                    </RectangleGeometry>
+                </Grid.Clip>
+
+                <Grid.Resources>
+                    <DataTemplate x:Key="dtpMaHoaDon">
+                        <Grid>
+                            <TextBlock HorizontalAlignment="Center"  Text="{Binding MaHD}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="dtpMaDV">
+                        <TextBlock Text="{Binding MaDichVu}"></TextBlock>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="dtpTenDV">
+                        <TextBlock Text="{Binding TenDichVu}"></TextBlock>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="dtpMaLoaiDV">
+                        <TextBlock Text="{Binding LoaiDichVu}"></TextBlock>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="dtpDonGia">
+                        <TextBlock Text="{Binding Gia}"></TextBlock>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="dtpNutSua">
+                        <Button x:Name="btnCapNhat" Click="btnCapNhat_Click" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/GUI;component/Res/edit.png"/>
+                            </Button.Background>
+                        </Button>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="dtpNutXoa">
+                        <Button x:Name="btnXoa" Click="btnXoa_Click" BorderThickness="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/GUI;component/Res/delete_vs2.png"/>
+                            </Button.Background>
+                        </Button>
+                    </DataTemplate>
+                </Grid.Resources>
+
+                <ListView Name="lsvDichVu" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  >
+                    <!--căn giữa-->
+                    <ListView.Resources>
+                        <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                    </ListView.Resources>
+
+                    <ListView.View>
+
+                        <GridView>
+                            <!--thay màu cho header-->
+                            <GridView.ColumnHeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="LightBlue" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </GridView.ColumnHeaderContainerStyle>
+
+                            <GridViewColumn  Header="Mã dịch vụ"  Width="100" CellTemplate="{StaticResource dtpMaDV}" />
+                            <GridViewColumn Header="Tên dịch vụ" Width="200" CellTemplate="{StaticResource dtpTenDV}" />
+                            <GridViewColumn Header="Loại" Width="140" CellTemplate="{StaticResource dtpMaLoaiDV}" />
+                            <GridViewColumn Header="Đơn giá " Width="120" CellTemplate="{StaticResource dtpDonGia}" />
+                            <GridViewColumn Width="65" Header="Sửa" CellTemplate="{StaticResource dtpNutSua}" />
+                            <GridViewColumn Width="65" Header="Xóa" CellTemplate="{StaticResource dtpNutXoa}" />
+
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,197 @@
+﻿<Window x:Class="GUI.View.CTP_ThemDV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.View"
+        mc:Ignorable="d"
+        Title="CTP_ThemDV" Height="500" Width="950"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="White"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        AllowsTransparency="True" 
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,950,500" RadiusX="10" RadiusY="10"/>
+    </Window.Clip>
+    <Border BorderThickness="1" BorderBrush="#FF807D7D" CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="63"></RowDefinition>
+                <RowDefinition Height="368"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock x:Name="txblTieuDe" Text="Thêm dịch vụ " FontSize="30" Foreground="#00A3FF" FontWeight="Bold" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            
+            <Grid Grid.Row="1" Background="#F2F1F1" Width="874" Height="368">
+                
+                <Grid.Clip>
+                    <RectangleGeometry Rect="0,0,874,368" RadiusX="10" RadiusY="10"/>
+                </Grid.Clip>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="2"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <Grid Grid.Column="0">
+                    
+                    <TextBlock Text="Danh sách dịch vụ" Foreground="#00A3FF" FontSize="20" VerticalAlignment="Top"
+                               Margin="30 10 0 0" Height="30"/>
+                    <ComboBox x:Name="cbTimKiemLoaiDV" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30 45 0 0"
+                                    Style="{StaticResource MaterialDesignOutlinedComboBox}" Background="White" BorderThickness="0.5"
+                                    materialDesign:HintAssist.Hint="Tìm loại dịch vụ"
+                                    Height="30" Padding="5" Width="150" SelectionChanged="cbTimKiemLoaiDV_SelectionChanged">
+                    </ComboBox>
+                    <materialDesign:ColorZone Mode="Standard" Padding="8 0 8 0" Margin="0 45 30 0"
+                        CornerRadius="5" Width="150" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" Style="{DynamicResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon Kind="Search" Opacity=".56" />
+                            </Button>
+                            <TextBox Grid.Column="1" x:Name="txbTimKiem"
+                                Margin="8 0 0 0"
+                                materialDesign:HintAssist.Hint="Tìm dịch vụ"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                BorderThickness="0"
+                                MinWidth="200" 
+                                TextChanged="txbTimKiem_TextChanged"   
+                                VerticalAlignment="Center" />
+                        </Grid>
+                    </materialDesign:ColorZone>
+                    <Grid  Width="380" Height="250" Background="White" VerticalAlignment="Bottom"
+                           Margin="0 0 0 25">
+                        <Grid.Clip>
+                            <RectangleGeometry Rect="0,0,380,250" RadiusX="10" RadiusY="10"/>
+                        </Grid.Clip>
+                        <ListView x:Name="lvDanhSachDV" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListView.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                            </ListView.Resources>
+
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="Background" Value="#C4C4C4" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
+                                    <GridViewColumn  Header="Loại DV"  Width="100" DisplayMemberBinding="{Binding LoaiDV}" />
+                                    <GridViewColumn Header="Dịch vụ" Width="110" DisplayMemberBinding="{Binding TenDV}"  />
+                                    <GridViewColumn Header="Giá" Width="105"  DisplayMemberBinding="{Binding Gia , StringFormat={}{0:N0}}" />
+                                    <GridViewColumn Width="50" Header="Thêm">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Width="25" Height="25" BorderThickness="0" Padding="0" Click="click_Them"  >
+                                                    <Button.Background>
+                                                        <ImageBrush ImageSource="/GUI;component/Res/add.png"/>
+                                                    </Button.Background>
+                                                </Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+
+                </Grid>
+
+                <Grid  Grid.Column="1">
+                    <Grid Background="#FF6F6E6E" Height="320"/>
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <TextBlock Text="Dịch vụ đã chọn" Foreground="#00A3FF" FontSize="20" VerticalAlignment="Top"
+                               Margin="30 10 0 0" Height="30"/>
+                    <Grid  Width="380" Height="250" Background="White" VerticalAlignment="Bottom"
+                           Margin="0 0 0 25">
+                        <Grid.Clip>
+                            <RectangleGeometry Rect="0,0,380,250" RadiusX="10" RadiusY="10"/>
+                        </Grid.Clip>
+                        <ListView x:Name="lvDichVuDaChon">
+                            <ListView.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                            </ListView.Resources>
+
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="Background" Value="#C4C4C4" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
+                                    <GridViewColumn  Header="Dịch vụ"  Width="125" DisplayMemberBinding="{Binding TenDV}" />
+                                    <GridViewColumn Width="80" Header="Số Lượng">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBox
+                                                        Text="{Binding SoLuong}"
+                                                        LostFocus="txbSoLuong_LostFocus"
+                                                        KeyUp="txbSoLuong_KeyUp"
+                                                        materialDesign:HintAssist.Hint="Nhập số lượng">
+                                                </TextBox>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Thành tiền" Width="120" DisplayMemberBinding="{Binding ThanhTien, StringFormat={}{0:N0}}"  />
+                                    <GridViewColumn Width="50" Header="Xóa">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Width="25" Height="25" BorderThickness="0" Padding="0" Click="click_Xoa"  >
+                                                    <Button.Background>
+                                                        <ImageBrush ImageSource="/GUI;component/Res/delete_vs2.png"/>
+                                                    </Button.Background>
+                                                </Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </Grid>
+            </Grid>
+            
+            <Grid Grid.Row="2">
+                <Button Width="130" Height="37" Background="#478C10" Content="Lưu" Click="click_Luu"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 280 0" >
+                    <Button.Clip>
+                        <RectangleGeometry Rect="0,0,130,37" RadiusX="10" RadiusY="10"/>
+                    </Button.Clip>
+                </Button>
+
+                <Button Width="130" Height="37" Background="#9D9999" Content="Thoát" Click="click_Thoat"   
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 90 0" >
+                    <Button.Clip>
+                        <RectangleGeometry Rect="0,0,130,37" RadiusX="10" RadiusY="10"/>
+                    </Button.Clip>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

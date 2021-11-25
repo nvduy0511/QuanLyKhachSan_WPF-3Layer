@@ -1,0 +1,184 @@
+﻿<Window x:Class="GUI.View.Them_SuaPhong"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.View"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"        
+        TextElement.FontFamily="Roboto"
+        AllowsTransparency="True"         
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Title="Them_SuaPhong" Height="450" Width="450">
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,450,450" RadiusX="10" RadiusY="10"/>
+    </Window.Clip>
+
+    <Border BorderThickness="1" BorderBrush="#2C2A2A" CornerRadius="10">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="300" ></RowDefinition>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--Làm phần tiêu đề -->
+            <Grid Grid.Row="0">
+                <TextBlock x:Name="txbTitle" Text="Nhập thông tin phòng"  
+                               HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                               Height="40"
+                               FontSize="30"
+                               FontWeight="Bold" 
+                               Foreground="#00A3FF"
+                     />
+
+            </Grid>
+            <!--Làm phần phần nhập thông tin -->
+            <Grid Grid.Row="1" Width="280" Height="260"                     
+                      HorizontalAlignment="Center"                       
+                      Background="#F2F1F1">
+                <Grid.Clip>
+                    <RectangleGeometry Rect="0,0,280,260" RadiusX="10" RadiusY="10"/>
+                </Grid.Clip>
+
+                <Grid Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70" ></RowDefinition>
+                        <RowDefinition Height="70" ></RowDefinition>
+                        <RowDefinition Height="70" ></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+
+                    <!--Làm phần nhập thông tin phòng -->
+                    <Grid Grid.Row="0" Margin="6 0 0 0" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="160"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Home" Width="25" Height="25" />
+                        </Grid>
+
+                        <Grid Grid.Column="1" >
+                            <TextBox x:Name="txtSoPhong"                       
+                                materialDesign:HintAssist.Hint="Nhập số phòng (Ví dụ: P100)"                        
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"                        
+                                VerticalAlignment="Center"  />
+                        </Grid>
+                    </Grid>
+
+                    <!--Làm phần nhập tình trạng phòng -->
+                    <Grid Grid.Row="1" Width="180" HorizontalAlignment="Center">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0"  VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="TableOfContents" Width="25" Height="25"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ComboBox Name="cmbTinhTrang"
+                                VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"
+                                Width="143"                                                                        
+                                materialDesign:HintAssist.Hint="Tình Trạng Phòng">
+                                <ComboBoxItem                                        
+                                            Content="Đã dọn dẹp" />
+                                <ComboBoxItem                                        
+                                            Content="Chưa dọn dẹp" />
+                                <ComboBoxItem                                        
+                                            Content="Sửa chữa" />
+                            </ComboBox>
+
+                        </Grid>
+                    </Grid>
+
+                    <!--Làm phần nhập loại phòng -->
+                    <Grid Grid.Row="2" Width="180" HorizontalAlignment="Center">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="TableOfContents" Width="25" Height="25"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ComboBox Name="cmbLoaiPhong"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"                                      
+                                Width="143"                                                                        
+                                materialDesign:HintAssist.Hint="Loại phòng">
+                            </ComboBox>
+
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+
+            </Grid>
+
+
+            <!--Làm nút nhập thêm hoặc hủy -->
+            <Grid Grid.Row="2">
+                <Grid Width="250" Margin="130 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+
+                        <Button Content="Cập nhật" 
+                                    Name="btnCapNhat" Click="btnCapNhat_Click"
+                                    Width="89" Height="36"
+                                    Margin=" 4 4 0 0" 
+                                    Background="#478C10">
+                            <Button.Clip>
+                                <RectangleGeometry Rect="0,0,89,36" RadiusX="10" RadiusY="10" >
+                                </RectangleGeometry>
+                            </Button.Clip>
+                        </Button>
+                        <Button Content="Thêm" FontWeight="Bold" Foreground="White"   Width="89" Height="36" Margin=" 4 4 0 0" Background="#478C10" Click="btnThem_Click">
+                            <Button.Clip>
+                                <RectangleGeometry Rect="0,0,89,36" RadiusX="10" RadiusY="10" >
+                                </RectangleGeometry>
+                            </Button.Clip>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Visibility" Value="Hidden"></Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=Text, ElementName=txbTitle }" Value="Nhập thông tin phòng">
+                                            <Setter Property="Visibility" Value="Visible"></Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                    </Grid>
+
+                    <Grid Grid.Column="1" >
+                        <Grid>
+                            <Button x:Name="btnHuy" Click="btnHuy_Click"
+                                    Width="89" Height="36"                                    
+                                    Content="Hủy bỏ" 
+                                    Margin=" 4 4 0 0" 
+                                    Background="#9D9999" >
+                                <Button.Clip>
+                                    <RectangleGeometry Rect="0,0,89,36" RadiusX="10" RadiusY="10" >
+                                    </RectangleGeometry>
+                                </Button.Clip>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

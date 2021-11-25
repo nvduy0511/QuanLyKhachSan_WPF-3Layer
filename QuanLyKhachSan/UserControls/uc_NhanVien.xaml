@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="GUI.UserControls.uc_NhanVien"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.UserControls"
+             mc:Ignorable="d" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             Background="White"
+             d:DesignHeight="641" d:DesignWidth="1300"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         FontFamily="{DynamicResource MaterialDesignFont}" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--Các button-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel  Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+
+                <Button Width="150" Height="38" Content="Thêm nhân viên" FontSize="15" 
+                    FontFamily="Roboto" FontWeight="Bold" Background="#FF478C10"
+                    Margin="85 0 0 0" Click="click_ThemNV"  >
+                    <Button.Clip>
+                        <RectangleGeometry Rect="0,0,150,38" RadiusX="10" RadiusY="10" >
+                        </RectangleGeometry>
+                    </Button.Clip>
+                </Button>
+                
+            </StackPanel>
+            <Grid Grid.Column="0">
+                <!--ô tìm kiếm-->
+                <materialDesign:ColorZone Mode="Standard" CornerRadius="5" HorizontalAlignment="Left" Margin="85,0,0,0"
+                                          VerticalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth1" Width="250">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Style="{DynamicResource MaterialDesignToolButton}">
+                            <materialDesign:PackIcon Kind="Search" Opacity="0.56" />
+                        </Button>
+                        <TextBox Grid.Column="1" x:Name="txbTimKiem"
+                                Margin="0 0 10 0"
+                                materialDesign:HintAssist.Hint="Tìm nhân viên "
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                BorderThickness="0"
+                                MinWidth="200"
+                                FlowDirection="LeftToRight"
+                                TextChanged="TimKiem_TextChanged"   
+                                VerticalAlignment="Center" />
+
+                    </Grid>
+                </materialDesign:ColorZone>
+
+                <Button Margin="100 0 0 0"
+                    Width="60" Height="50"
+                    Background="Transparent"
+                    BorderThickness="0">
+                    <Button.Clip>
+                        <RectangleGeometry Rect="0,0,60,50" RadiusX="50" RadiusY="60">
+                        </RectangleGeometry>
+                    </Button.Clip>
+                    <materialDesign:PackIcon Kind="Send" Width="30"
+                                         Height="30" 
+                                         Foreground="Black" Opacity="0.7" />
+                </Button>
+            </Grid>
+        </Grid>
+
+
+        <!--Listview hiển thị-->
+        <Grid Grid.Row="1">
+            <Grid Width="1220" Height="500" Background="#F2F1F1">
+                <Grid.Clip>
+                    <RectangleGeometry Rect="0,0,1220,500" RadiusX="10" RadiusY="10" >
+                    </RectangleGeometry>
+                </Grid.Clip>
+                <ListView x:Name="lvNhanVien" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+
+                    <ListView.Resources>
+                        <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView>
+                            <!--thay màu cho header-->
+                            <GridView.ColumnHeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="LightBlue" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </GridView.ColumnHeaderContainerStyle>
+
+
+                            <GridViewColumn  Header="Mã NV"  Width="60" DisplayMemberBinding="{Binding MaNV}"/>
+                            <GridViewColumn Header="Tên Nhân Viên" Width="150" DisplayMemberBinding="{Binding HoTen}" />
+                            <GridViewColumn Header="NTNS" Width="100" DisplayMemberBinding="{Binding Path= NTNS, StringFormat= MM/dd/yyyy }" />
+                            <GridViewColumn Header="Chức vụ" Width="120" DisplayMemberBinding="{Binding ChucVu}" />
+                            <GridViewColumn Header="Giới tính" Width="70" DisplayMemberBinding="{Binding GioiTinh}" />
+                            <GridViewColumn Header="Dịa chỉ" Width="240" DisplayMemberBinding="{Binding DiaChi}" />
+                            <GridViewColumn Header="SĐT" Width="110" DisplayMemberBinding="{Binding SDT }" />
+                            <GridViewColumn Header="CCCD" Width="100" DisplayMemberBinding="{Binding CCCD}" />
+                            <GridViewColumn Header="Lương" Width="150" DisplayMemberBinding="{Binding Luong , StringFormat={}{0:N0} VND}" />
+                            
+                            <GridViewColumn Width="60" Header="Sửa">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Width="25" Height="25" BorderThickness="0" Click="click_SuaNV">
+                                            <Button.Background>
+                                                <ImageBrush ImageSource="/GUI;component/Res/edit.png"/>
+                                            </Button.Background>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="60" Header="Xóa">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Width="25" Height="25" BorderThickness="0" Click="click_XoaNV" >
+                                            <Button.Background>
+                                                <ImageBrush ImageSource="/GUI;component/Res/delete_vs2.png"/>
+                                            </Button.Background>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

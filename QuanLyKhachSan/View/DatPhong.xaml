@@ -1,0 +1,238 @@
+﻿<Window x:Class="GUI.View.DatPhong"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.View"
+        mc:Ignorable="d"
+        Title="DatPhong" Height="550" Width="995"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="White"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        AllowsTransparency="True" 
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded" >
+    <!--Bo góc-->
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,995,550" RadiusX="10" RadiusY="10">
+        </RectangleGeometry>
+    </Window.Clip>
+
+    <Border BorderThickness="1" BorderBrush="#FF807D7D" CornerRadius="10">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" FontSize="30" FontWeight="Bold" Text="Đặt Phòng" Margin="0 12 0 0"
+                   Foreground="#00A3FF" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            <Grid Grid.Row="1">
+            <Grid  Width="900" Height="420" Background="#F2F1F1"
+              VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Grid.Clip>
+                    <RectangleGeometry Rect="0,0,900,420" RadiusX="10" RadiusY="10"/>
+                </Grid.Clip>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="366"></ColumnDefinition>
+                    <ColumnDefinition Width="2"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <TextBlock FontSize="30" FontWeight="Bold" Text="Thông tin khách hàng" Margin="0 38 0 0"
+                   Foreground="#00A3FF" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                    <Grid Height="25" Width="213" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="65 25 0 0">
+                        <materialDesign:PackIcon Kind="AccountBox" Height="25" Width="25"/>                     
+                        <TextBox x:Name="txbHoTen" Margin="30 0 0 0" materialDesign:HintAssist.Hint="Nhập họ tên khách hàng"/>    
+                    </Grid>
+
+                        <Grid Height="25" Width="213" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="65 27 0 0">
+                        <materialDesign:PackIcon Kind="CardAccountDetailsOutline" Height="25" Width="25"/>     
+                        <TextBox x:Name="txbCCCD" MaxLength="12" Margin="30 0 0 0" materialDesign:HintAssist.Hint="Nhập CCCD"/>                
+                    </Grid>
+
+                        <Grid Height="25" Width="213" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="65 27 0 0">
+                        <materialDesign:PackIcon Kind="Phone" Height="25" Width="25"/>                          
+                        <TextBox x:Name="txbSDT" Margin="30 0 0 0" MaxLength="10" materialDesign:HintAssist.Hint="Nhập SDT"/>                  
+                     </Grid>
+
+                        <Grid Height="25" Width="213" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="65 27 0 0">
+                        <materialDesign:PackIcon Kind="MapMarkerRadiusOutline" Height="25" Width="25"/>
+                        <TextBox x:Name="txbDiaChi" Margin="30 0 0 0" materialDesign:HintAssist.Hint="Nhập địa chỉ"/>
+                     </Grid>
+
+                        <Grid Height="25" Width="213" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="65 27 0 0">
+                            <materialDesign:PackIcon Kind="Earth" Height="25" Width="25"/>
+                        <TextBox x:Name="txbQuocTich" Margin="30 0 0 0" materialDesign:HintAssist.Hint="Nhập quốc tịch"/>
+                    </Grid>
+
+                        <Grid Height="25" Width="213" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="65 27 0 0">
+                            <materialDesign:PackIcon Kind="GenderTransgender" Height="25" Width="25"/>
+                        <ComboBox x:Name="cbGioiTinh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30 0 0 0"
+                                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                    materialDesign:HintAssist.Hint="Giới tính"
+                                    Height="25" Padding="5" Width="180">
+                            <ComboBoxItem Content="Nam" />
+                            <ComboBoxItem Content="Nữ" />
+                        </ComboBox>
+                        </Grid>
+                    </StackPanel>
+
+                <Grid  Grid.Column="1">
+                    <Grid Height="300" Background="Black" Opacity="0.5"></Grid>
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <TextBlock FontSize="30" FontWeight="Bold" Text="Thông tin phòng" Margin="0 38 0 0"
+                        Foreground="#00A3FF" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                    <Grid Height="33" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"
+                        Margin="70 80 0 0">
+                        <materialDesign:PackIcon Kind="CalendarToday" Height="25" Width="25" VerticalAlignment="Bottom"/>
+                            <DatePicker Margin="30 0 0 0" x:Name="dtpNgayBD"
+                                        
+                            materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    </Grid>
+                    
+                    <Grid Height="33" Width="150" VerticalAlignment="Top" HorizontalAlignment="Right"
+                        Margin="0 80 70 0">
+                            <materialDesign:PackIcon Kind="ClockOutline" Height="25" Width="25" VerticalAlignment="Bottom"/>
+                            <materialDesign:TimePicker x:Name="tpGioBD"
+                                      Margin="30 0 0 0"
+                                      Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
+                                      materialDesign:HintAssist.Hint="Giờ bắt đầu" />
+                    </Grid>
+                    
+                    <Grid Height="33" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"
+                        Margin="70 120 0 0">
+                        <materialDesign:PackIcon Kind="CalendarToday" Height="25" Width="25" VerticalAlignment="Bottom"/>
+                        <DatePicker Margin="30 0 0 0" x:Name="dtpNgayKT"
+                            materialDesign:HintAssist.Hint="Ngày kết thúc"
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    </Grid>
+                    
+                    <Grid Height="33" Width="150" VerticalAlignment="Top" HorizontalAlignment="Right"
+                        Margin="0 120 70 0">
+                            <materialDesign:PackIcon Kind="ClockOutline" Height="25" Width="25" VerticalAlignment="Bottom"/>
+                            <materialDesign:TimePicker x:Name="tpGioKT"
+                                      Margin="30 0 0 0"
+                                      Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
+                                      materialDesign:HintAssist.Hint="Giờ kết thúc" />
+                    </Grid>
+                    <!--Lisview Phòng Trống-->
+                    <TextBlock Text="Danh sách phòng trống" FontSize="20" Foreground="#00A3FF"
+                               Margin="12 187 0 0"/>
+                    <Grid Background="#FFFCFC" Height="172" Width="230" Margin="12 0  0 24"
+                        HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <Grid.Clip>
+                                <RectangleGeometry Rect="0,0,230,172" RadiusX="10" RadiusY="10"/>
+                        </Grid.Clip>
+                        <ListView x:Name="lvPhongTrong" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                            <ListView.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                            </ListView.Resources>
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="Background" Value="#C4C4C4" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
+                                    <GridViewColumn  Header="Số phòng"  Width="65" DisplayMemberBinding="{Binding Path = SoPhong }" />
+                                        <GridViewColumn Header="Loại phòng" Width="100" DisplayMemberBinding="{Binding  Path= TenLoaiPhong }"  />
+                                    <GridViewColumn Width="54" Header="Thêm">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Width="25" Height="25" BorderThickness="0" Padding="0" Click="click_ThemPhong" >
+                                                    <Button.Background>
+                                                        <ImageBrush ImageSource="/GUI;component/Res/add.png"/>
+                                                    </Button.Background>
+                                                </Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                    <!--Lisview Phòng Đã Chọn-->
+                    <TextBlock Text="Phòng đã chọn" FontSize="20" Foreground="#00A3FF"
+                               Margin="0 187 111 0" HorizontalAlignment="Right"/>
+                    <Grid Background="#FFFCFC" Height="172" Width="230" Margin="0 0 19 24"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Grid.Clip>
+                            <RectangleGeometry Rect="0,0,230,172" RadiusX="10" RadiusY="10"/>
+                        </Grid.Clip>
+                            <ListView x:Name="lvPhongDaChon">
+                                <ListView.Resources>
+                                    <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                                    <sys:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarHeightKey }">10</sys:Double>
+                                </ListView.Resources>
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.ColumnHeaderContainerStyle>
+                                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                <Setter Property="Background" Value="#C4C4C4" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="FontWeight" Value="Bold" />
+                                            </Style>
+                                        </GridView.ColumnHeaderContainerStyle>
+                                        <GridViewColumn  Header="Số phòng"  Width="65" DisplayMemberBinding="{Binding SoPhong }" />
+                                        <GridViewColumn Width="60" Header="Số người">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox
+                                                        Text="{Binding SoNguoiO}"
+                                                        LostFocus="txbSoLuong_LostFocus" KeyUp="txbSoLuong_KeyUp"
+                                                        materialDesign:HintAssist.Hint="Nhập số người ở">
+                                                    </TextBox>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn  Header="Ngày BD"  Width="150" DisplayMemberBinding="{Binding NgayBD }" />
+                                        <GridViewColumn  Header="Ngày KT"  Width="150" DisplayMemberBinding="{Binding NgayKT}" />
+                                        <GridViewColumn Width="54" Header="Xóa">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Width="25" Height="25" BorderThickness="0" Padding="0" Click="click_Delete"  >
+                                                        <Button.Background>
+                                                            <ImageBrush ImageSource="/GUI;component/Res/delete_vs2.png"/>
+                                                        </Button.Background>
+                                                    </Button>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                    </Grid>
+                    
+                    </Grid>
+
+                </Grid>
+                <Button Width="89" Height="36" Background="#478C10" Content="Lưu"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 212 11" Click="click_Luu">
+                    <Button.Clip>
+                        <RectangleGeometry Rect="0,0,89,36" RadiusX="10" RadiusY="10"/>
+                    </Button.Clip>
+                </Button>
+                <Button Width="89" Height="36" Background="#9D9999" Content="Hủy"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 80 12"  Click="click_Huy">
+                    <Button.Clip>
+                        <RectangleGeometry Rect="0,0,89,36" RadiusX="10" RadiusY="10"/>
+                    </Button.Clip>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

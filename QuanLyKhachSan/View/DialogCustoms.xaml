@@ -1,0 +1,61 @@
+﻿<Window x:Class="GUI.View.DialogCustoms"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.View"
+        xmlns:uc="clr-namespace:GUI.UserControls"
+        mc:Ignorable="d"
+        x:Name="dialogcustom"
+        WindowStyle="None"
+        AllowsTransparency="True" 
+        WindowStartupLocation="CenterScreen"
+        Title="DialogCustoms" Height="180" Width="400"
+        >
+    <Window.Background>
+        <ImageBrush ImageSource="/GUI;component/Res/Light 010.png" Stretch="None"/>
+    </Window.Background>
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,400,180" RadiusX="10" RadiusY="10"/>
+    </Window.Clip>
+    <Border BorderThickness="1" BorderBrush="#FF807D7D" CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="26"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <uc:ucControlbar2 Grid.Row="0" MinHeight="{Binding MinHeight_ucControlbar, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"
+                          Tag="{Binding Title, ElementName=dialogcustom}"  Opacity="0.8" VerticalAlignment="Center" Height="26">
+            </uc:ucControlbar2>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <TextBlock x:Name="txblMess" FontSize="12" TextAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" TextWrapping="WrapWithOverflow"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Button x:Name="btnYes" Width="70" Height="30" Background="#FF49886C" Content="Yes"
+                        HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80 0 0 0" FontSize="12" Click="btnYes_Click" >
+                        <Button.Clip>
+                            <RectangleGeometry Rect="0,0,70,30" RadiusX="10" RadiusY="10"/>
+                        </Button.Clip>
+                    </Button>
+                    <Button x:Name="btnNo" Width="70" Height="30" Background="#FF6D7764" Content="No"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 80 0" FontSize="12" BorderBrush="White" Click="btnNo_Click" >
+                        <Button.Clip>
+                            <RectangleGeometry Rect="0,0,70,30" RadiusX="10" RadiusY="10"/>
+                        </Button.Clip>
+                    </Button>
+                    <Button x:Name="btnOK" Width="70" Height="30" Background="#FF49886C" Content="OK"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="btnOK_Click" >
+                        <Button.Clip>
+                            <RectangleGeometry Rect="0,0,70,30" RadiusX="10" RadiusY="10"/>
+                        </Button.Clip>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

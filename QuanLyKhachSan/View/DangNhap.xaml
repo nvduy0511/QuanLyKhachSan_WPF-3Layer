@@ -1,0 +1,89 @@
+﻿<Window x:Class="GUI.View.DangNhap"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.View"
+        x:Name="dangnhap"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        Title="Đăng nhập" Height="500" Width="900"
+        WindowStyle="None"
+        AllowsTransparency="True" 
+        WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="../Res/backGround_DN.png"></ImageBrush>
+    </Window.Background>
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,900,500" RadiusX="10" RadiusY="10" x:Name="boGoc">
+        </RectangleGeometry>
+    </Window.Clip>
+    <Grid>
+        <Button Width="65" Height="60" x:Name="btn_Close" Click="btn_Close_Click"
+                    HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent"
+                    BorderThickness="0" ToolTip="Close">
+            <Button.Clip>
+                <RectangleGeometry Rect="0,0,65,50" RadiusX="20" RadiusY="20">
+                </RectangleGeometry>
+            </Button.Clip>
+            <materialDesign:PackIcon Kind="CloseOctagonOutline" Width="35"
+                                         Height="35"
+                                         Foreground="White" Opacity="0.7"/>
+        </Button>
+
+        <materialDesign:Card Width="238" Height="325" Background="#FFFFFF"
+                             VerticalAlignment="Top" HorizontalAlignment="Left"
+                             Margin="100 80 0 0" >
+            <!--vẽ hình tròn-->
+            <materialDesign:Card.Clip>
+                <RectangleGeometry Rect="0,0,238,325" RadiusX="10" RadiusY="10" >
+                </RectangleGeometry>
+            </materialDesign:Card.Clip>
+            <Grid>
+                
+                <TextBlock Height="35" FontWeight="Bold" FontSize="30" Foreground="#0056FC" 
+                           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,31,0,0">Đăng Nhập</TextBlock>
+                <materialDesign:PackIcon Kind="Account" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                                         Height="19" Width="19"
+                                         Margin="20,114,0,0"/>
+                <materialDesign:PackIcon Kind="Lock" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                                         Height="19" Width="19"
+                                         Margin="20,160,0,0"/>
+                <TextBox    Margin="55 107 0 0" Height="26" Width="130" x:Name="txbTenDangNhap"
+                            HorizontalAlignment="Left" VerticalAlignment="Top"
+                            materialDesign:HintAssist.Hint="Tên đăng nhập">
+                </TextBox>
+
+                <PasswordBox  materialDesign:HintAssist.Hint="Mật khẩu"  x:Name="txbMatKhau"
+                              HorizontalAlignment="Left" VerticalAlignment="Top"
+                              Margin="55,154,0,0" Height="26" Width="130"
+                              materialDesign:TextFieldAssist.HasClearButton="True" />
+
+                <TextBlock Foreground="#0056FC"
+                           HorizontalAlignment="Left" VerticalAlignment="Top"
+                           Margin="119 200 0 0">
+                   <Hyperlink NavigateUri="https://www.facebook.com/duydidom05" RequestNavigate="Hyperlink_RequestNavigate"  >
+                        Quên mật khẩu?
+                    </Hyperlink>
+                </TextBlock>
+
+                <Button Height="28" Width="107" Background="#0056FC" 
+                        HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Margin="63,240,0,0" Click="click_DangNhap">
+                    <Button.Clip>
+                        <RectangleGeometry Rect="0,0,107,28" RadiusX="10" RadiusY="10" >
+                        </RectangleGeometry>
+                    </Button.Clip>
+                    <TextBlock Text="Đăng nhập" FontSize="15" Foreground="White"></TextBlock>
+                </Button>
+            </Grid>
+
+        </materialDesign:Card>
+    </Grid>
+</Window>
